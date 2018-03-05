@@ -20,6 +20,20 @@ namespace todo_dotnet_api
         {
             services.AddMvc();
 
+            services.AddCors(options => options.AddPolicy("AllowAll",
+                builder =>
+                {
+                    builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowCredentials();
+                })
+            );
+
+
+            
+            
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "Todo API", Version = "v1" });
@@ -35,6 +49,8 @@ namespace todo_dotnet_api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("AllowAll");
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
