@@ -24,7 +24,7 @@ namespace todo_dotnet_api
                     new TodoItem() {Id = Guid.NewGuid(), TaskItem = "Learn React-Router"},
                     new TodoItem() {Id = Guid.NewGuid(), TaskItem = "Learn Redux"},
                     new TodoItem() {Id = Guid.NewGuid(), TaskItem = "Learn Axios"},
-                    new TodoItem() {Id = Guid.NewGuid(), TaskItem = "Create a sample app"},
+                    new TodoItem() {Id = Guid.NewGuid(), TaskItem = "Create a sample app", HasDone = true},
                     new TodoItem() {Id = Guid.NewGuid(), TaskItem = "Deploy to Netlify"}
                 };
         }
