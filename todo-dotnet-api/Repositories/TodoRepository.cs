@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using todo_dotnet_api.Models;
 
-namespace todo_dotnet_api
+namespace todo_dotnet_api.Repositories
 {
     public class TodoRepository
     {

@@ -10,27 +10,27 @@ using todo_dotnet_api.Repositories;
 namespace todo_dotnet_api.Controllers
 {
     [Route("api/[controller]")]
-    public class TodoController : Controller
+    public class TodoTaskController : Controller
     {
-        private static TodoRepository _todoRepository;
+        private static TodoTaskRepository _todoTaskRepository;
 
-        public TodoController(TodoRepository todoRepository)
+        public TodoTaskController(TodoTaskRepository todoTaskRepository)
         {
-            _todoRepository = todoRepository;
+            _todoTaskRepository = todoTaskRepository;
         }
         
-        // GET api/todo
+        // GET api/todotask
         [HttpGet]
-        public IEnumerable<TodoItem> Get()
+        public IEnumerable<TodoTask> Get()
         {
-            return _todoRepository.Get();
+            return _todoTaskRepository.Get();
         }
 
-        // GET api/todo/5
+        // GET api/todotask/5
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
-            var item = _todoRepository.GetById(id);
+            var item = _todoTaskRepository.GetById(id);
 
             if (item == null)
                 return NotFound();
@@ -38,59 +38,59 @@ namespace todo_dotnet_api.Controllers
             return Ok(item);
         }
 
-        // POST api/todo
+        // POST api/todotask
         [HttpPost]
-        public IActionResult Post([FromBody]TodoItem todoItem)
+        public IActionResult Post([FromBody]TodoTask TodoTask)
         {
-            _todoRepository.Add(todoItem);
+            _todoTaskRepository.Add(TodoTask);
 
             return Ok();
         }
 
-        // POST api/todo/reset
+        // POST api/todotask/reset
         [HttpPost("reset")]
         public IActionResult Reset()
         {
-            _todoRepository.Reset();
+            _todoTaskRepository.Reset();
 
             return Ok();
         }
 
-        // PUT api/todo/5
+        // PUT api/todotask/5
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, [FromBody]TodoItem todoItem)
+        public IActionResult Put(Guid id, [FromBody]TodoTask TodoTask)
         {
-            var item = _todoRepository.GetById(id);
+            var item = _todoTaskRepository.GetById(id);
 
             if (item == null)
                 return NotFound();
 
-            _todoRepository.Update(todoItem);
+            _todoTaskRepository.Update(TodoTask);
 
             return Ok();
         }
 
-        // DELETE api/todo/5
+        // DELETE api/todotask/5
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            _todoRepository.Delete(id);
+            _todoTaskRepository.Delete(id);
 
             return Ok();
         }
 
-        // PUT api/todo/mark/5
+        // PUT api/todotask/mark/5
         [HttpPut("mark/{id}")]
         public IActionResult Mark(Guid id, [FromBody]bool hasDone)
         {
-            var item = _todoRepository.GetById(id);
+            var item = _todoTaskRepository.GetById(id);
 
             if (item == null)
                 return NotFound();
 
             item.HasDone = hasDone;
 
-            _todoRepository.Update(item);
+            _todoTaskRepository.Update(item);
 
             return Ok();
         }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using todo_dotnet_api.Repositories;
 
 namespace todo_dotnet_api
 {
@@ -39,7 +40,8 @@ namespace todo_dotnet_api
                 c.SwaggerDoc("v1", new Info { Title = "Todo API", Version = "v1" });
             });
 
-            services.AddScoped<TodoRepository>();
+            services.AddSingleton<TodoRepository>();
+            services.AddSingleton<TodoTaskRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,7 +63,12 @@ namespace todo_dotnet_api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Todo Api V1");
             });
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
