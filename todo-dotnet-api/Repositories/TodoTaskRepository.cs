@@ -20,13 +20,14 @@ namespace todo_dotnet_api.Repositories
             _TodoTasks =
                 new List<TodoTask>()
                 {
-                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn React"},
-                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn React-Router", DoneBy = DateTime.Now.AddDays(-1)},
-                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn Redux", DoneBy = DateTime.Now.AddMonths(3)},
-                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn Axios"},
+                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn React", DoneBy = DateTime.Now.Date.AddMonths(2)},
+                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn React-Router", DoneBy = DateTime.Now.Date.AddDays(-1)},
+                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn Redux", DoneBy = DateTime.Now.Date.AddMonths(3)},
+                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn Axios", HasDone = true, DoneBy = DateTime.Now.Date.AddDays(-7)},
                     new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Create a sample app", HasDone = true},
                     new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Deploy to Netlify", HasDone = true},
-                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn HoC", DoneBy = DateTime.Now.AddMonths(2)}
+                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn HoC", DoneBy = DateTime.Now.Date.AddMonths(2)},
+                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn Jest", DoneBy = DateTime.Now.Date.AddMonths(2)},
                 };
         }
 
