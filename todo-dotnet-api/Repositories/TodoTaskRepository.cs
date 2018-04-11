@@ -20,20 +20,22 @@ namespace todo_dotnet_api.Repositories
             _TodoTasks =
                 new List<TodoTask>()
                 {
-                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn React", DoneBy = DateTime.Now.Date.AddMonths(2)},
-                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn React-Router", DoneBy = DateTime.Now.Date.AddDays(-1)},
-                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn Redux", DoneBy = DateTime.Now.Date.AddMonths(3)},
-                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn Axios", HasDone = true, DoneBy = DateTime.Now.Date.AddDays(-7)},
-                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Create a sample app", HasDone = true},
-                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Deploy to Netlify", HasDone = true},
-                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn HoC", DoneBy = DateTime.Now.Date.AddMonths(2)},
-                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn Jest", DoneBy = DateTime.Now.Date.AddMonths(2)},
+                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn React", DoneBy = DateTime.Now.Date.AddMonths(2), CreatedDate = DateTime.Now.AddHours(-1)},
+                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn React-Router", DoneBy = DateTime.Now.Date.AddDays(-1), CreatedDate = DateTime.Now.AddDays(-2)},
+                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn Redux", DoneBy = DateTime.Now.Date.AddMonths(3), CreatedDate = DateTime.Now.AddMinutes(-1)},
+                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn Axios", HasDone = true, DoneBy = DateTime.Now.Date.AddDays(-7), CreatedDate = DateTime.Now.AddMonths(-1)},
+                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Create a sample app", HasDone = true, CreatedDate = DateTime.Now.AddHours(-2)},
+                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Deploy to Netlify", HasDone = true, CreatedDate = DateTime.Now.AddHours(-3)},
+                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn HoC", DoneBy = DateTime.Now.Date.AddMonths(2), CreatedDate = DateTime.Now.AddHours(-2)},
+                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Learn Jest", DoneBy = DateTime.Now.Date.AddMonths(2), CreatedDate = DateTime.Now.AddHours(-3)},
+                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Implement Security", DoneBy = DateTime.Now.Date.AddMonths(2), CreatedDate = DateTime.Now.AddHours(-4)},
+                    new TodoTask() {Id = Guid.NewGuid(), TaskItem = "Configure for multiple environments", DoneBy = DateTime.Now.Date.AddMonths(3), CreatedDate = DateTime.Now.AddMinutes(-5)}
                 };
         }
 
         public void Reset() => Seed();
 
-        public IList<TodoTask> Get() => _TodoTasks;
+        public IList<TodoTask> Get() => _TodoTasks.OrderByDescending(t => t.CreatedDate).ToList();
 
         public void Add(TodoTask item) => _TodoTasks.Add(item);
 
